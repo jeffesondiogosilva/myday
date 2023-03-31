@@ -18,7 +18,7 @@ class LearningController extends Controller
     public function index(Learning $learning)
     {
         $aprendizados = Learning::all();  
-        dd($aprendizados);
+        
         return view('learnings.index')->with('aprendizados', $aprendizados);
     }
 
