@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Learning;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,8 @@ class LearningController extends Controller
      */
     public function index(Learning $learning)
     {
-        $aprendizados = Learning::all();        
+        $aprendizados = Learning::all();  
+        dd($aprendizados);
         return view('learnings.index')->with('aprendizados', $aprendizados);
     }
 

@@ -1,23 +1,38 @@
+
+
 @include('components.head')
-<div class="container">
-    <h1>Aprendizados</h1>
+<div class="container ">
+    <div class="container text-light bg-secondary">
+        
+        <h1>Aprendizados</h1>
+    </div>
 
     @include('learnings.form', [
     'texto' => 'O que você aprendeu hoje?'
     ])
+    <table class="table">
 
-    <ul class="form-group">
-        @foreach ($aprendizados as $aprendizado)
-        <li class="list-group-item">{{ $aprendizado->getAttribute('id') }}</li>
-        <li class="list-group-item bg-success text-light">{{ $aprendizado->title }}</li>
-        @endforeach
-    </ul>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Aprendizado</th>
+                <th>Criado em:</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach ($aprendizados as $aprendizado)
+            <tr>
+                <td class="">{{ $aprendizado->getAttribute('id') }}</td>
+                <td class=" bg-info text-light">{{ $aprendizado->title }}</td>
+                <td class=" bg-secondary text-light">{{ $aprendizado->getAttribute('created_at') }}</td>
+            </tr>
+
+            @endforeach
+        </tbody>
+    </table>
 </div>
 
 
 
 @include('components.footer')
-
-
-
-    
