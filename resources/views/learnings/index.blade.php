@@ -25,7 +25,7 @@
             <tr>
                 <td class="">{{ $aprendizado->getAttribute('id') }}</td>
                 <td class=" bg-info text-light">{{ $aprendizado->title }}</td>
-                <td class=" bg-secondary text-light">{{ $aprendizado->getAttribute('created_at') }}</td>
+                <td class=" bg-secondary text-light">{{ date('d/m/Y H:i:s', strtotime($aprendizado->getAttribute('created_at')))  }}</td>
             </tr>
 
             @endforeach
