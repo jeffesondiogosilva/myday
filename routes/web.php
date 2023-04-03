@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/learnings', [LearningController::class, 'index']);
+Route::get('/learnings', [LearningController::class, 'index'])->name('learnings-index');
 
 Route::post('/learnings', [LearningController::class, 'store'])->name('learnings-store');
+
+Route::get('/learnings/{id}/edit', [LearningController::class, 'edit'])->name('learnings-edit');
+
+Route::put('/learnings/{id}', [LearningController::class, 'update'])->where('id', '[0-9]+')->name('learnings-update'); 
+
+Route::delete('/learnings/{id}', [LearningController::class, 'destroy'])->where('id', '[0-9]+')->name('learnings-destroy');
+

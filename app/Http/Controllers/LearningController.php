@@ -40,11 +40,10 @@ class LearningController extends Controller
      */
     public function store(Request $request)
     {
-        $learnings = Learning::create([
-            'title' => $request->input('title'),                        
-        ]);        
-
-        return redirect('/learnings');
+        Learning::create($request->all());
+        
+        
+        return redirect()->route('learnings-index');
     }
 
     /**
@@ -65,8 +64,11 @@ class LearningController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {                
+        
+        $learning = Learning::where('id', $id)->first();    
+        
+        return view('learnings.edit')->with('learning',  $learning);
     }
 
     /**
@@ -76,9 +78,14 @@ class LearningController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Learning $learning, Request $request, $id)
+    {        
+        $data = [
+            'title' => $request->title,            
+        ];
+        Learning::where('id', $id)->update($data);
+        return redirect()->route('learnings-index');
+            
     }
 
     /**
@@ -89,6 +96,7 @@ class LearningController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Learning::where('id', $id)->delete();
+        return redirect()->route('learnings-index');
     }
 }
