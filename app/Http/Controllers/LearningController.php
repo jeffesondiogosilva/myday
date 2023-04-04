@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\LearningRepoI;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Learning;
@@ -10,16 +11,19 @@ use Illuminate\Support\Facades\DB;
 use SebastianBergmann\CodeCoverage\Report\Html\Facade;
 class LearningController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   protected $learningRepo;
+   
+    public function __construct(LearningRepoI $repo){
+        
+        $learnings = $this->learningRepo->getAll();
+        return $learnings; 
+    }
+    
     public function index(Learning $learning)
     {
-        $aprendizados = Learning::all();  
-        
-        return view('learnings.index')->with('aprendizados', $aprendizados);
+        // $aprendizados = Learning::all();          
+        // return view('learnings.index')->with('aprendizados', $aprendizados);
+        $learning = $this->learningRepo->getAll();
     }
 
     /**
@@ -96,6 +100,7 @@ class LearningController extends Controller
      */
     public function destroy($id)
     {
+
         Learning::where('id', $id)->delete();
         return redirect()->route('learnings-index');
     }

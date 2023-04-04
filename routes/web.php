@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\LearningController;
+
 use Illuminate\Support\Facades\Route;
+
+App::bind('App\Contracts\LeraningRepoI', 'App\Repos\LearningRepo');
 
 /*
 |--------------------------------------------------------------------------
