@@ -9,7 +9,7 @@ class LearningRepo implements LearningRepoI{
 
     protected $model;
 
-    public function __construct(LearningRepo $model){
+    public function __construct(Learning $model){
 
         $this->model = $model;
     }
